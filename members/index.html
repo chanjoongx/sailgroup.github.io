@@ -206,16 +206,16 @@
 
         .professor-profile {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 220px 1fr;
             gap: 40px;
             align-items: start;
         }
 
         .professor-photo {
-            width: 250px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             background: #f0f0f0;
-            border-radius: 8px;
+            border-radius: 50%;
             overflow: hidden;
         }
 
@@ -230,14 +230,14 @@
         }
 
         .professor-name {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 500;
             color: #222;
             margin-bottom: 5px;
         }
 
         .professor-title {
-            font-size: 18px;
+            font-size: 19px;
             color: #666;
             margin-bottom: 20px;
         }
@@ -271,7 +271,7 @@
 
         .education-career-item {
             display: grid;
-            grid-template-columns: 120px 1fr;
+            grid-template-columns: 140px 1fr;
             margin-bottom: 15px;
             font-size: 15px;
         }
@@ -293,15 +293,15 @@
 
         .students-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
             margin-top: 40px;
         }
 
         .student-card {
             text-align: center;
             background: #fafafa;
-            padding: 30px 20px;
+            padding: 35px 20px;
             border-radius: 8px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -312,8 +312,8 @@
         }
 
         .student-photo {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto 20px;
             border-radius: 50%;
             overflow: hidden;
@@ -327,14 +327,14 @@
         }
 
         .student-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 500;
             color: #333;
             margin-bottom: 10px;
         }
 
         .student-status {
-            font-size: 14px;
+            font-size: 15px;
             color: #666;
             margin-bottom: 20px;
             font-style: italic;
@@ -348,7 +348,7 @@
 
         .student-links a {
             color: #888;
-            font-size: 20px;
+            font-size: 22px;
             transition: color 0.3s;
         }
 
@@ -403,6 +403,8 @@
             }
             
             .professor-photo {
+                width: 180px;
+                height: 180px;
                 margin: 0 auto;
             }
             
@@ -416,7 +418,7 @@
             }
             
             .students-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 30px;
             }
             
@@ -461,6 +463,16 @@
             
             .students-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .professor-photo {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .student-photo {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
@@ -519,7 +531,7 @@
                         <p><i class="fas fa-building"></i>국민대학교 과학기술대학 응용화학부</p>
                         <p style="margin-left: 30px;">Department of Applied Chemistry, College of Science and Technology, Kookmin University</p>
                         <p><i class="fas fa-map-marker-alt"></i>법학관 229호 / Rm 229, College of Law</p>
-                        <p><i class="fas fa-phone"></i>(+82)-2-910-4731</p>
+                        <p><i class="fas fa-phone"></i>02-910-4731 / (+82)-2-910-4731</p>
                         <p><i class="fas fa-envelope"></i><a href="mailto:jjoung@kookmin.ac.kr" style="color: #0066cc; text-decoration: none;">jjoung@kookmin.ac.kr</a></p>
                     </div>
                     
@@ -619,7 +631,7 @@
                     <h3 class="student-name">Hyojin Lee</h3>
                     <p class="student-status">UROP</p>
                     <div class="student-links">
-                        <a href="mailto:hyojin@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:aquarius8139@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
                         <a href="https://github.com/hyojin0125" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
@@ -635,8 +647,8 @@
             </div>
             <div class="social-links">
                 <a href="mailto:jjoung@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="#" title="Google Scholar"><i class="fab fa-google"></i></a>
-                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://scholar.google.com/citations?user=0uuwTRQAAAAJ&hl=ko" title="Google Scholar"><i class="fab fa-google"></i></a>
+                <a href="https://github.com/sailgroup" title="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
