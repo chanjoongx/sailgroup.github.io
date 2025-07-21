@@ -354,7 +354,7 @@
             padding: 30px 25px 25px 25px;
         }
 
-        /* 학생 사진 - 사각형으로 변경 */
+        /* 수정된 학생 사진 스타일 - 사진이 잘리지 않도록 */
         .student-photo {
             width: 200px;
             height: 220px;
@@ -362,12 +362,18 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .student-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* cover에서 contain으로 변경 */
             object-position: center;
         }
 
@@ -460,7 +466,7 @@
 
         .student-description .research-interests {
             margin-bottom: auto;
-            text-align: center;
+            text-align: left; /* 텍스트 정렬을 왼쪽으로 변경 */
             padding: 0 10px;
         }
 
@@ -469,12 +475,14 @@
             font-weight: 600;
             color: #444;
             margin-bottom: 12px;
+            text-align: center; /* 제목은 가운데 정렬 유지 */
         }
 
         .student-description .research-interests p {
-            font-size: 14px;
+            font-size: 13px; /* 폰트 크기 약간 줄임 */
             color: #666;
             line-height: 1.7;
+            text-align: justify; /* 양쪽 정렬로 변경 */
         }
 
         /* Footer - 홈페이지와 동일 */
@@ -741,7 +749,7 @@
                                 <h4>Chanjoong Kim</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Machine learning applications in spectroscopy, Deep learning for molecular property prediction, Computational chemistry</p>
+                                    <p>Chanjoong is an undergraduate student in Artificial Intelligence Major, Kookmin University. He is interested in developing machine learning models to predict chemical reaction mechanisms and pathways. His research focuses on training neural networks with large-scale mechanistic datasets to understand and reproduce complex chemical transformations, bridging computational chemistry and artificial intelligence.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:chanjoongkim@kookmin.ac.kr">
@@ -775,7 +783,7 @@
                                 <h4>Hyejeong Jeon</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>AI-driven spectral analysis, Chemical informatics, Data processing and visualization techniques</p>
+                                    <p>Hyejeong Jeon is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. She is interested in computational molecular prediction, utilizing advanced algorithms and machine learning techniques to forecast molecular behavior, drug interactions, and chemical properties for pharmaceutical applications.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:jeonhyejeong@kookmin.ac.kr">
@@ -809,7 +817,7 @@
                                 <h4>Jinwoo Lee</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Spectroscopy and AI integration, Neural network architectures for chemical analysis, Automated data processing pipelines</p>
+                                    <p>Jinwoo Lee is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. He is interested in AI-driven prediction of physicochemical properties and molecular structures, developing computational models that can accurately predict molecular characteristics essential for drug discovery and materials science.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:jinwoo2657@kookmin.ac.kr">
@@ -843,7 +851,7 @@
                                 <h4>Hyojin Lee</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Molecular spectroscopy analysis, Pattern recognition in chemical data, Development of AI tools for chemistry research</p>
+                                    <p>Hyojin Lee is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. She is interested in chemical informatics and machine learning, focusing on the application of data science techniques to extract meaningful insights from chemical databases and develop predictive models for chemical research.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:aquarius8139@kookmin.ac.kr">
