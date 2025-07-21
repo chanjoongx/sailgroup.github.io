@@ -299,6 +299,30 @@
             margin-top: 5px;
         }
 
+        /* Loading animation for news */
+        .news-loading {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+        }
+
+        .news-loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            border-top-color: #666;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Footer */
         footer {
             background-color: #222;
@@ -696,13 +720,8 @@
         <aside>
             <div class="news-section">
                 <h3>Recent News</h3>
-                <div class="news-item">
-                    <div class="news-date">March 2025</div>
-                    <div class="news-content">Prof. Joung joined Kookmin University as Assistant Professor</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">February 2025</div>
-                    <div class="news-content">Prof. Joung completed postdoctoral research at MIT</div>
+                <div id="news-container">
+                    <div class="news-loading">Loading news...</div>
                 </div>
                 <p style="text-align: center; margin-top: 20px;">
                     <a href="/news/" style="color: #0066cc; text-decoration: none; font-size: 14px; font-weight: 500;">... see more</a>
@@ -724,5 +743,60 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // 뉴스 페이지에서 데이터 가져오기
+        async function loadRecentNews() {
+            try {
+                const response = await fetch('/news/index.html');
+                const text = await response.text();
+                
+                // DOMParser로 HTML 파싱
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                // 뉴스 아이템들 찾기
+                const newsItems = doc.querySelectorAll('.news-list-item');
+                const newsContainer = document.getElementById('news-container');
+                
+                // 로딩 메시지 제거
+                newsContainer.innerHTML = '';
+                
+                // 최근 뉴스 2개만 표시
+                const maxNews = 2;
+                for (let i = 0; i < Math.min(newsItems.length, maxNews); i++) {
+                    const item = newsItems[i];
+                    const date = item.querySelector('.news-date').textContent;
+                    const title = item.querySelector('.news-title').textContent;
+                    
+                    // 홈페이지 스타일에 맞게 뉴스 아이템 생성
+                    const newsDiv = document.createElement('div');
+                    newsDiv.className = 'news-item';
+                    newsDiv.innerHTML = `
+                        <div class="news-date">${date}</div>
+                        <div class="news-content">${title}</div>
+                    `;
+                    
+                    newsContainer.appendChild(newsDiv);
+                }
+            } catch (error) {
+                console.error('뉴스 로딩 실패:', error);
+                // 에러 발생시 기본 내용 표시
+                document.getElementById('news-container').innerHTML = `
+                    <div class="news-item">
+                        <div class="news-date">July 2025</div>
+                        <div class="news-content">New UROP Students Join SAIL</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">March 2025</div>
+                        <div class="news-content">Prof. Joung joined Kookmin University as Assistant Professor</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // 페이지 로드시 뉴스 가져오기
+        document.addEventListener('DOMContentLoaded', loadRecentNews);
+    </script>
 </body>
 </html>
