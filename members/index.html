@@ -206,17 +206,19 @@
 
         .professor-profile {
             display: grid;
-            grid-template-columns: 220px 1fr;
+            grid-template-columns: 240px 1fr;
             gap: 40px;
             align-items: start;
         }
 
+        /* 사각형으로 변경된 교수님 사진 */
         .professor-photo {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 260px;
             background: #f0f0f0;
-            border-radius: 50%;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .professor-photo img {
@@ -298,26 +300,60 @@
             margin-top: 40px;
         }
 
-        .student-card {
+        /* 카드 flip 효과를 위한 컨테이너 */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 380px;
+            perspective: 1000px; /* 3D 효과를 위한 시점 설정 */
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
             text-align: center;
-            background: #fafafa;
-            padding: 35px 20px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        /* hover했을 때 회전 */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* 앞면과 뒷면 공통 스타일 */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
             border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
         }
 
-        .student-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        /* 뒷면은 180도 회전된 상태로 */
+        .flip-card-back {
+            background-color: #f8f8f8;
+            transform: rotateY(180deg);
         }
 
+        /* 학생 사진 - 사각형으로 변경 */
         .student-photo {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
+            width: 180px;
+            height: 200px;
+            margin-bottom: 20px;
+            border-radius: 8px;
             overflow: hidden;
             background: #e0e0e0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
         .student-photo img {
@@ -354,6 +390,51 @@
 
         .student-links a:hover {
             color: #333;
+        }
+
+        /* 뒷면 스타일 - 설명 텍스트 */
+        .student-description {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .student-description h4 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .student-description .research-interests {
+            margin-bottom: 15px;
+        }
+
+        .student-description .research-interests h5 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .student-description .research-interests p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .student-description .contact-info {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .student-description .contact-info p {
+            font-size: 13px;
+            color: #666;
+            margin: 5px 0;
         }
 
         /* Footer - 홈페이지와 동일 */
@@ -403,8 +484,8 @@
             }
             
             .professor-photo {
-                width: 180px;
-                height: 180px;
+                width: 200px;
+                height: 240px;
                 margin: 0 auto;
             }
             
@@ -420,6 +501,15 @@
             .students-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 30px;
+            }
+            
+            /* 모바일에서는 flip 효과 대신 터치로 작동하도록 */
+            .flip-card-inner {
+                transition: transform 0.6s;
+            }
+            
+            .flip-card.flipped .flip-card-inner {
+                transform: rotateY(180deg);
             }
             
             .footer-content {
@@ -466,13 +556,17 @@
             }
             
             .professor-photo {
-                width: 160px;
-                height: 160px;
+                width: 180px;
+                height: 220px;
             }
             
             .student-photo {
-                width: 120px;
-                height: 120px;
+                width: 150px;
+                height: 170px;
+            }
+            
+            .flip-card {
+                height: 350px;
             }
         }
     </style>
@@ -588,51 +682,123 @@
             <h2 class="section-header">Students</h2>
             
             <div class="students-grid">
-                <div class="student-card">
-                    <div class="student-photo">
-                        <img src="/assets/images/student_chanjoong.jpg" alt="Chanjoong Kim">
-                    </div>
-                    <h3 class="student-name">Chanjoong Kim</h3>
-                    <p class="student-status">UROP</p>
-                    <div class="student-links">
-                        <a href="mailto:chanjoongkim@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/chanjoongx" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-
-                <div class="student-card">
-                    <div class="student-photo">
-                        <img src="/assets/images/student_hyejeong.jpg" alt="Hyejeong Jeon">
-                    </div>
-                    <h3 class="student-name">Hyejeong Jeon</h3>
-                    <p class="student-status">UROP</p>
-                    <div class="student-links">
-                        <a href="mailto:jeonhyejeong@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/HyejeongJeon" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-
-                <div class="student-card">
-                    <div class="student-photo">
-                        <img src="/assets/images/student_jinwoo.jpg" alt="Jinwoo Lee">
-                    </div>
-                    <h3 class="student-name">Jinwoo Lee</h3>
-                    <p class="student-status">UROP</p>
-                    <div class="student-links">
-                        <a href="mailto:jinwoo2657@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/Jinwoo-SPAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <!-- Chanjoong Kim -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="student-photo">
+                                <img src="/assets/images/student_chanjoong.jpg" alt="Chanjoong Kim">
+                            </div>
+                            <h3 class="student-name">Chanjoong Kim</h3>
+                            <p class="student-status">UROP</p>
+                            <div class="student-links">
+                                <a href="mailto:chanjoongkim@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="https://github.com/chanjoongx" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="student-description">
+                                <h4>Chanjoong Kim</h4>
+                                <div class="research-interests">
+                                    <h5>Research Interests</h5>
+                                    <p>Machine learning applications in spectroscopy, Deep learning for molecular property prediction, Computational chemistry</p>
+                                </div>
+                                <div class="contact-info">
+                                    <p><i class="fas fa-envelope"></i> chanjoongkim@kookmin.ac.kr</p>
+                                    <p><i class="fab fa-github"></i> github.com/chanjoongx</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="student-card">
-                    <div class="student-photo">
-                        <img src="/assets/images/student_hyojin.jpg" alt="Hyojin Lee">
+                <!-- Hyejeong Jeon -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="student-photo">
+                                <img src="/assets/images/student_hyejeong.jpg" alt="Hyejeong Jeon">
+                            </div>
+                            <h3 class="student-name">Hyejeong Jeon</h3>
+                            <p class="student-status">UROP</p>
+                            <div class="student-links">
+                                <a href="mailto:jeonhyejeong@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="https://github.com/HyejeongJeon" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="student-description">
+                                <h4>Hyejeong Jeon</h4>
+                                <div class="research-interests">
+                                    <h5>Research Interests</h5>
+                                    <p>AI-driven spectral analysis, Chemical informatics, Data processing and visualization techniques</p>
+                                </div>
+                                <div class="contact-info">
+                                    <p><i class="fas fa-envelope"></i> jeonhyejeong@kookmin.ac.kr</p>
+                                    <p><i class="fab fa-github"></i> github.com/HyejeongJeon</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="student-name">Hyojin Lee</h3>
-                    <p class="student-status">UROP</p>
-                    <div class="student-links">
-                        <a href="mailto:aquarius8139@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/hyojin0125" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+
+                <!-- Jinwoo Lee -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="student-photo">
+                                <img src="/assets/images/student_jinwoo.jpg" alt="Jinwoo Lee">
+                            </div>
+                            <h3 class="student-name">Jinwoo Lee</h3>
+                            <p class="student-status">UROP</p>
+                            <div class="student-links">
+                                <a href="mailto:jinwoo2657@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="https://github.com/Jinwoo-SPAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="student-description">
+                                <h4>Jinwoo Lee</h4>
+                                <div class="research-interests">
+                                    <h5>Research Interests</h5>
+                                    <p>Spectroscopy and AI integration, Neural network architectures for chemical analysis, Automated data processing pipelines</p>
+                                </div>
+                                <div class="contact-info">
+                                    <p><i class="fas fa-envelope"></i> jinwoo2657@kookmin.ac.kr</p>
+                                    <p><i class="fab fa-github"></i> github.com/Jinwoo-SPAI</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hyojin Lee -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="student-photo">
+                                <img src="/assets/images/student_hyojin.jpg" alt="Hyojin Lee">
+                            </div>
+                            <h3 class="student-name">Hyojin Lee</h3>
+                            <p class="student-status">UROP</p>
+                            <div class="student-links">
+                                <a href="mailto:aquarius8139@kookmin.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="https://github.com/hyojin0125" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="student-description">
+                                <h4>Hyojin Lee</h4>
+                                <div class="research-interests">
+                                    <h5>Research Interests</h5>
+                                    <p>Molecular spectroscopy analysis, Pattern recognition in chemical data, Development of AI tools for chemistry research</p>
+                                </div>
+                                <div class="contact-info">
+                                    <p><i class="fas fa-envelope"></i> aquarius8139@kookmin.ac.kr</p>
+                                    <p><i class="fab fa-github"></i> github.com/hyojin0125</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -652,5 +818,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // 모바일에서 터치로 flip 효과 작동하도록
+        const flipCards = document.querySelectorAll('.flip-card');
+        
+        flipCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // 모바일이나 태블릿인지 체크
+                if (window.innerWidth <= 768) {
+                    this.classList.toggle('flipped');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
