@@ -305,12 +305,12 @@
             margin-top: 40px;
         }
 
-        /* 카드 flip 효과를 위한 컨테이너 */
+        /* 카드 flip 효과를 위한 컨테이너 - 높이 증가 */
         .flip-card {
             background-color: transparent;
             width: 100%;
-            height: 360px;
-            perspective: 1000px; /* 3D 효과를 위한 시점 설정 */
+            height: 420px; /* 360px에서 420px로 증가 */
+            perspective: 1000px;
         }
 
         .flip-card-inner {
@@ -344,17 +344,17 @@
         }
         
         .flip-card-front {
-            padding: 25px;
+            padding: 30px 25px;
         }
 
         /* 뒷면은 180도 회전된 상태로 */
         .flip-card-back {
             background-color: #f9f9f9;
             transform: rotateY(180deg);
-            padding: 30px 25px 25px 25px;
+            padding: 20px;
         }
 
-        /* 수정된 학생 사진 스타일 - 사진이 잘리지 않도록 */
+        /* 수정된 학생 사진 스타일 */
         .student-photo {
             width: 200px;
             height: 220px;
@@ -373,7 +373,7 @@
             max-height: 100%;
             width: auto;
             height: auto;
-            object-fit: contain; /* cover에서 contain으로 변경 */
+            object-fit: contain;
             object-position: center;
         }
 
@@ -407,13 +407,54 @@
             color: #333;
         }
 
-        /* 뒷면의 버튼 스타일 */
+        /* 뒷면 스타일 수정 - 공간 효율적으로 사용 */
+        .student-description {
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .student-description h4 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .student-description .research-interests {
+            flex: 1;
+            overflow-y: auto;
+            text-align: left;
+            padding: 0 5px;
+            margin-bottom: 15px;
+        }
+
+        .student-description .research-interests h5 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* 텍스트 크기와 줄 간격 조정 */
+        .student-description .research-interests p {
+            font-size: 12px; /* 13px에서 12px로 감소 */
+            color: #666;
+            line-height: 1.5; /* 1.7에서 1.5로 감소 */
+            text-align: justify;
+        }
+
+        /* 뒷면의 버튼 스타일 - 더 컴팩트하게 */
         .contact-buttons {
-            margin-top: auto;
-            padding-top: 20px;
+            padding-top: 15px;
             border-top: 1px solid #e0e0e0;
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-direction: column;
             width: 100%;
         }
@@ -422,16 +463,16 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 20px;
+            padding: 10px 16px; /* 패딩 축소 */
             background-color: #fff;
             border: 1.5px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 6px;
             text-decoration: none;
             color: #444;
-            font-size: 14px;
+            font-size: 13px; /* 폰트 크기 축소 */
             font-weight: 500;
             transition: all 0.3s ease;
-            gap: 10px;
+            gap: 8px;
         }
 
         .contact-buttons a:hover {
@@ -443,46 +484,7 @@
         }
 
         .contact-buttons i {
-            font-size: 16px;
-        }
-
-        /* 뒷면 스타일 - 설명 텍스트 */
-        .student-description {
-            padding: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 100%;
-        }
-
-        .student-description h4 {
-            font-size: 24px;
-            font-weight: 500;
-            color: #222;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .student-description .research-interests {
-            margin-bottom: auto;
-            text-align: left; /* 텍스트 정렬을 왼쪽으로 변경 */
-            padding: 0 10px;
-        }
-
-        .student-description .research-interests h5 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 12px;
-            text-align: center; /* 제목은 가운데 정렬 유지 */
-        }
-
-        .student-description .research-interests p {
-            font-size: 13px; /* 폰트 크기 약간 줄임 */
-            color: #666;
-            line-height: 1.7;
-            text-align: justify; /* 양쪽 정렬로 변경 */
+            font-size: 14px; /* 아이콘 크기도 축소 */
         }
 
         /* Footer - 홈페이지와 동일 */
@@ -533,7 +535,7 @@
             
             .professor-photo {
                 width: 200px;
-                height: 316px; /* 비율 유지 */
+                height: 316px;
                 margin: 0 auto;
             }
             
@@ -551,7 +553,11 @@
                 gap: 30px;
             }
             
-            /* 모바일에서는 flip 효과 대신 터치로 작동하도록 */
+            /* 모바일에서 flip 카드 높이 조정 */
+            .flip-card {
+                height: 400px;
+            }
+            
             .flip-card-inner {
                 transition: transform 0.6s;
             }
@@ -605,7 +611,7 @@
             
             .professor-photo {
                 width: 180px;
-                height: 285px; /* 비율 유지 */
+                height: 285px;
             }
             
             .student-photo {
@@ -614,7 +620,7 @@
             }
             
             .flip-card {
-                height: 340px;
+                height: 380px; /* 모바일에서도 약간 증가 */
             }
         }
     </style>
@@ -749,7 +755,7 @@
                                 <h4>Chanjoong Kim</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Chanjoong is an undergraduate student in Artificial Intelligence Major, Kookmin University. He is interested in developing machine learning models to predict chemical reaction mechanisms and pathways. His research focuses on training neural networks with large-scale mechanistic datasets to understand and reproduce complex chemical transformations, bridging computational chemistry and artificial intelligence.</p>
+                                    <p>AI Major undergraduate student at Kookmin University. Developing ML models for predicting chemical reaction mechanisms and pathways. Research focuses on training neural networks with mechanistic datasets to understand complex chemical transformations, bridging computational chemistry and AI.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:chanjoongkim@kookmin.ac.kr">
@@ -783,7 +789,7 @@
                                 <h4>Hyejeong Jeon</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Hyejeong Jeon is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. She is interested in computational molecular prediction, utilizing advanced algorithms and machine learning techniques to forecast molecular behavior, drug interactions, and chemical properties for pharmaceutical applications.</p>
+                                    <p>Biopharmaceutical Chemistry undergraduate at Kookmin. Interested in computational molecular prediction using ML techniques to forecast molecular behavior, drug interactions, and chemical properties for pharmaceutical applications.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:jeonhyejeong@kookmin.ac.kr">
@@ -817,7 +823,7 @@
                                 <h4>Jinwoo Lee</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Jinwoo Lee is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. He is interested in AI-driven prediction of physicochemical properties and molecular structures, developing computational models that can accurately predict molecular characteristics essential for drug discovery and materials science.</p>
+                                    <p>Biopharmaceutical Chemistry undergraduate. Working on AI-driven prediction of physicochemical properties and molecular structures. Developing computational models for accurate prediction of molecular characteristics essential for drug discovery and materials science.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:jinwoo2657@kookmin.ac.kr">
@@ -851,7 +857,7 @@
                                 <h4>Hyojin Lee</h4>
                                 <div class="research-interests">
                                     <h5>Research Interests</h5>
-                                    <p>Hyojin Lee is an undergraduate student in Biopharmaceutical Chemistry Major, School of Applied Chemistry, Kookmin University. She is interested in chemical informatics and machine learning, focusing on the application of data science techniques to extract meaningful insights from chemical databases and develop predictive models for chemical research.</p>
+                                    <p>Biopharmaceutical Chemistry student at Kookmin. Focused on chemical informatics and ML, applying data science to extract insights from chemical databases and develop predictive models for chemical research.</p>
                                 </div>
                                 <div class="contact-buttons">
                                     <a href="mailto:aquarius8139@kookmin.ac.kr">
